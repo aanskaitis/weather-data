@@ -30,7 +30,7 @@ def unix_timestamp_to_datetime(unix_timestamp, timezone):
 def json_response_to_measurement(json_response):
     measurement = (
         json_response['id'],  # city_id
-        json_response['weather']['id'],  # weather_id
+        json_response['weather'][0]['id'],  # weather_id
         json_response['coord']['lon'],  # lon
         json_response['coord']['lat'],  # lat
         unix_timestamp_to_datetime(json_response['dt'], json_response['timezone']),  # datetime
