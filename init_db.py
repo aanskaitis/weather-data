@@ -34,7 +34,7 @@ cursor.execute("CREATE TABLE weather ("
                "id int UNSIGNED PRIMARY KEY NOT NULL,"
                "main VARCHAR(50) NOT NULL,"
                "description VARCHAR(255),"
-               "icon VARCHAR(3),"
+               "icon_day VARCHAR(3),"
                "icon_night VARCHAR(3))")
 
 cursor.execute("CREATE TABLE measurement ("
@@ -147,3 +147,4 @@ weather_data = [
 cursor.executemany("INSERT INTO weather (id, main, description, icon_day, icon_night) VALUES (%s, %s, %s, %s, %s)", weather_data)
 
 db.commit()
+
