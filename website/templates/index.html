@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<br>
+<h1>WEATHER IN BALTIC STATES</h1>
+<svg class="line-chart"></svg>
+<table>
+    <tr>
+        <th>Measurement</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Pressure</td>
+        <td>1021kPa</td>
+    </tr>
+    <tr>
+        <td>Humidity</td>
+        <td>75%</td>
+    </tr>
+    <tr>
+        <td>cloudiness</td>
+        <td>20%</td>
+    </tr>
+</table>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script>
+    var arr = [];
+</script>
+{% for r in results %}
+<script>
+    var city_id = {{ r.city_id }};
+    var datetime = new Date("{{ r.datetime }}");
+    var temperature = {{ r.temperature }};
+    arr.push({
+        city_id: +city_id,
+        datetime: datetime,
+        temperature: +temperature
+    });
+</script>
+{% endfor %}
+<script>
+    console.log(arr);
+    lineChart(arr);
+</script>
+{% endblock %}
